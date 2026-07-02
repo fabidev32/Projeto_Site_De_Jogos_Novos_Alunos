@@ -1,0 +1,254 @@
+.section_jogo {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Crio a tela do jogo */
+.jogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100;
+}
+
+/* Estilização padronizada */
+.obstaculo {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  bottom: 0px;
+  z-index: 0;
+}
+.cenario {
+  width: 1080px;
+  height: 380px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid black;
+}
+.moeda {
+  width: 50px;
+  height: 50px;
+}
+.divMoedas {
+  position: absolute;
+  z-index: 0;
+}
+
+.transicaoEntreCenarios {
+  transform: opacity 0;
+  transition: transform 1s ease-in-out;
+}
+
+/*  Fase 01 */
+
+.cenarioFase01 {
+  background-image: url("./imagens/fase01.jpg");
+  animation: moverCenarioFase01 3s linear infinite;
+}
+
+@keyframes moverCenarioFase01 {
+  0% {
+    background-position: 0px;
+  }
+
+  100% {
+    background-position: -2000px;
+  }
+}
+
+.obstaculoFase01 {
+  animation: movimentacao 2.0s linear infinite;
+}
+
+@keyframes movimentacao {
+  0% {
+    left: 1100px;
+  }
+
+  50% {
+    left: 500px;
+  }
+
+  80% {
+    left: 50px;
+  }
+
+  100% {
+    left: -100px;
+  }
+}
+
+
+/* Fase 02 */
+
+.cenarioFase02 {
+  background-position: center;
+  background-size: 100%;
+  background-image: url("./imagens/fase02.png");
+  animation: moverCenarioFase02 2.5s linear infinite;
+}
+
+@keyframes moverCenarioFase02 {
+  0% {
+    background-position: 0px;
+  }
+
+  100% {
+    background-position: -2000px;
+  }
+}
+
+.obstaculoFase02 {
+  animation: movimentacao 1.5s linear infinite;
+}
+
+@keyframes movimentacao {
+  0% {
+    left: 1100px;
+  }
+
+  50% {
+    left: 500px;
+  }
+
+  80% {
+    left: 50px;
+  }
+
+  100% {
+    left: -100px;
+  }
+}
+
+/* Fase 03 */
+
+.cenarioFase03 {
+  background-position: center;
+  background-size: 100%;
+  background-image: url("./imagens/fase03.png");
+  animation: moverCenarioFase03 2.0s linear infinite;
+}
+
+@keyframes moverCenarioFase03 {
+  0% {
+    background-position: 0px;
+  }
+
+  100% {
+    background-position: -2000px;
+  }
+}
+
+.obstaculoFase03 {
+  position: absolute;
+  animation: movimentacao 1.0s linear infinite;
+}
+
+@keyframes movimentacao {
+  0% {
+    left: 1100px;
+  }
+
+  50% {
+    left: 500px;
+  }
+
+  80% {
+    left: 50px;
+  }
+
+  100% {
+    left: -100px;
+  }
+}
+
+
+/* 🎯 Estilização do Mário */
+.mario {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  bottom: 0px;
+  left: 500px;
+  z-index: 1;
+}
+
+/* 🎯 Animação que faz o Mário pular */
+@keyframes jump {
+  0% {
+    bottom: 0px;
+  }
+
+  50% {
+    bottom: 180px;
+  }
+
+  100% {
+    bottom: 0px;
+  }
+}
+
+.jump {
+  animation: jump 0.5s linear;
+}
+
+
+.gameOver {
+  animation: none;
+}
+
+.reiniciar_jogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.reiniciar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 5px dashed #2f5a59;
+  border-radius: 20px;
+  margin: 10px;
+  color: white;
+  height: 200px;
+  width: 400px;
+  background-color: #7cc6fe;
+}
+
+.reiniciar button {
+  background-color: #218b8f;
+  height: 40px;
+  width: 150px;
+  border: 2px solid white;
+  border-radius: 20px;
+  color: white;
+}
+
+.reiniciar button:hover {
+  background-color: #d3f2f3;
+  color: black;
+}
+
+.pontuacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100px;
+  height: 80px;
+  background-color: #3ca4f3;
+  border: 1px dashed white;
+  border-radius: 20px;
+  color: white;
+  font-size: 30px;
+  margin: 10px;
+}

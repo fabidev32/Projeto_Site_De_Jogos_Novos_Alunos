@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./../css/cadastro.css" class="stylesheet" />
+</head>
+
+<body>
+  <main>
+    <!-- Formulário -->
+    <div class="div_formulario">
+      <input id="nome" type="text" placeholder="Digite o nome" />
+      <input type="text" id="link" placeholder="Digite o link do jogo" />
+      <input type="text" id="descricao" placeholder="Digite a descrição do jogo" />
+      <p>Escolha o estilo de jogo</p>
+      <select class="estilo"></select>
+      <label for="input_com_video">Selecione o vídeo de fundo!</label>
+      <input type="file" id="input_com_video" />
+
+      <button id="cadastrar" onclick="CadastrarJogo()">
+        Cadastrar
+      </button>
+    </div>
+
+    <!-- Filtro dos cadastro -->
+    <h2>Confira a minha lista de jogos abaixo!</h2>
+    <div class="div_filtro">
+      <p>Pesquise pelo nome dos jogos!</p>
+      <input type="text" id="texto_pesquisa" />
+      <button id="limpar_filtro">Limpar filtro</button>
+    </div>
+
+    <!-- Lista de jogos -->
+    <div class="lista_de_jogos"></div>
+  </main>
+
+  <script src="./../javascript/cadastro.js"></script>
+</body>
+
+</html>
+</body>
+
+</html>
