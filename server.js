@@ -1,18 +1,14 @@
-const express = require('express'); // Importa o Express
-const app = express(); // Cria uma aplicação Express
-app.use(express.json()); // Permite trabalhar com dados JSON
+const express = require('express'); 
+const app = express(); 
+app.use(express.json());
 
 
-// Inicia o servidor na porta 3000
 app.listen(3000, () => console.log('Servidor rodando na porta 3000'));
 
-//Serve arquivos estáticos
 app.use(express.static('public'));
 
-const path = require('path'); // Importa o módulo 'path' do Node.js
-//Posso tanto utilizar o path quanto o dirname 
+const path = require('path'); 
 app.get('/listarJogos', (req, res) => {
-  // Entra em 'public', depois em 'html', depois pega o arquivo
   res.sendFile(path.join(__dirname, 'public', 'html', 'lista.html'));
 });
 

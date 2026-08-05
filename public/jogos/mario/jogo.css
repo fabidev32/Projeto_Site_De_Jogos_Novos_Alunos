@@ -24,6 +24,7 @@
   bottom: 0px;
   z-index: 0;
 }
+
 .cenario {
   width: 1080px;
   height: 380px;
@@ -31,19 +32,35 @@
   position: relative;
   border: 2px solid black;
 }
+
 .moeda {
-  width: 50px;
-  height: 50px;
-}
-.divMoedas {
-  position: absolute;
-  z-index: 0;
+  width: 35px;
+  margin: 5px;
 }
 
-.transicaoEntreCenarios {
+.listaDeMoedas {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  top: 50px;
+  left: 120px;
+  animation: moverListaMoedas 3s linear infinite;
+}
+
+@keyframes moverListaMoedas {
+  0% {
+    transform: translateX(1080px);
+  }
+
+  100% {
+    transform: translateX(-1080px);
+  }
+}
+
+/* .transicaoEntreCenarios {
   transform: opacity 0;
   transition: transform 1s ease-in-out;
-}
+} */
 
 /*  Fase 01 */
 
@@ -63,25 +80,7 @@
 }
 
 .obstaculoFase01 {
-  animation: movimentacao 2.0s linear infinite;
-}
-
-@keyframes movimentacao {
-  0% {
-    left: 1100px;
-  }
-
-  50% {
-    left: 500px;
-  }
-
-  80% {
-    left: 50px;
-  }
-
-  100% {
-    left: -100px;
-  }
+  animation: movimentacao 2s linear infinite;
 }
 
 
@@ -108,24 +107,6 @@
   animation: movimentacao 1.5s linear infinite;
 }
 
-@keyframes movimentacao {
-  0% {
-    left: 1100px;
-  }
-
-  50% {
-    left: 500px;
-  }
-
-  80% {
-    left: 50px;
-  }
-
-  100% {
-    left: -100px;
-  }
-}
-
 /* Fase 03 */
 
 .cenarioFase03 {
@@ -149,6 +130,9 @@
   position: absolute;
   animation: movimentacao 1.0s linear infinite;
 }
+
+/* Animação movimentação obstáculo */
+
 
 @keyframes movimentacao {
   0% {

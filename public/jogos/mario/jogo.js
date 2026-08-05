@@ -6,56 +6,56 @@ let obstaculo = document.querySelector(".obstaculo");
 let cenario = document.querySelector(".cenario");
 //Reiniciar jogo
 let reiniciar_jogo = document.querySelector(".reiniciar_jogo");
-//Pontuação
-let pontuacao = document.querySelector(".pontuacao");
+//Moedas
+let divMoedas = document.querySelector(".listaDeMoedas");
 
 //Array de posicionamento 
-let posicaoMoedas = [1000, 100, 100, 1000, 3000];
+let posicaoMoedas = [2, 100, 200, 300, 400, 500, 600, 700];
 
 let loop;
-let totalMoeadas = 0;
-pontuacao.innerHTML = totalMoeadas;
+let gerenciadorDeMoedas;
 
 
 function jump() {
   mario.classList.add("jump");
-  pontuacao.innerHTML = "";
-  totalMoeadas += 1;
-  pontuacao.innerHTML = totalMoeadas;
-  console.log(pontuacao);
   setTimeout(() => {
     mario.classList.remove("jump");
   }, 500);
 }
 
+// function limparFase() {
+//   clearInterval(gerenciadorDeMoedas);
+//   limparMoedas();
 
-function adicionarMoedas() {
+// }
+
+function limparMoedas() {
+  let moedasDaFase = document.querySelectorAll(".listaDeMoedas");
+  for (let i = moedasDaFase.length - 1; i >= 0; i--) {
+    moedasDaFase[i].innerHTML = "";
+  }
+
+}
+
+function gerenciarMoedas() {
 
   //Gerar quantidade aleatória de moedas
-  let min = 1;
+  let min = 3;
   let max = 8;
   let quantidadeMoedas = Math.floor(Math.random() * (max - min + 1)) + min;
 
-  //Gerar posicionamento aleatório das moedas
-  min = 0;
-  max = posicaoMoedas.length - 1;
-  let posicaoMoeda = Math.floor(Math.random() * (max - min + 1)) + min;
-
-  console.log("Quantidade de moedas: " + quantidadeMoedas);
-  console,log("Posição das moedas: " + posicaoMoedas[posicaoMoeda]);
-
   //Adicionar as moedas 
-  const divMoedas = document.createElement("div");
-  divMoedas.classList.add("divMoedas");
+  const moedas = document.createElement("div");
+  moedas.classList.add("listaDeMoedas");
   for (let i = 0; i < quantidadeMoedas; i++) {
-    divMoedas.innerHTML = `
+    moedas.innerHTML += `
         <div>
          <img class="moeda" src="./imagens/moeda.png" alt="moeda" />
         </div>
      `;
   }
-  divMoedas.style.left = posicaoMoedas[posicaoMoeda] + "px";
-  cenario.appendChild(divMoedas);
+
+  cenario.appendChild(moedas);
 }
 
 function game() {
@@ -65,22 +65,15 @@ function game() {
 
   setTimeout(() => {
     fase02();
-  }, 5000);
+  }, 20000);
 
   setTimeout(() => {
     fase03();
-  }, 10000);
+  }, 30000);
 
 }
 
 function fase01() {
-
-  cenario.classList.add("cenarioFase01");
-  obstaculo.classList.add("obstaculoFase1");
-
-  moedas = setInterval(() => {
-    adicionarMoedas();
-  }, 3000);
 
   loop = setInterval(() => {
     if (marioEnconstou() && marioNaoPulou()) {
@@ -88,34 +81,48 @@ function fase01() {
     }
   }, 10);
 
+  gerenciarMoedas();
+
 }
 
 function fase02() {
+
+  // limparFase();
 
   cenario.classList.remove("cenarioFase01");
   cenario.classList.add("cenarioFase02");
 
   obstaculo.classList.remove("obstaculoFase1");
   obstaculo.classList.add("obstaculoFase02");
+
   loop = setInterval(() => {
     if (marioEnconstou() && marioNaoPulou()) {
       GameOver();
     }
   }, 10);
+
+  gerenciarMoedas();
+
 
 }
 
 function fase03() {
 
+  // limparFase();
+
   cenario.classList.remove("cenarioFase02");
   cenario.classList.add("cenarioFase03");
+
   obstaculo.classList.remove("obstaculoFase2");
   obstaculo.classList.add("obstaculoFase03");
+
   loop = setInterval(() => {
     if (marioEnconstou() && marioNaoPulou()) {
       GameOver();
     }
   }, 10);
+
+    gerenciarMoedas();
 
 }
 
@@ -136,19 +143,21 @@ function marioNaoPulou() {
 }
 
 function ReiniciarJogo() {
+
   //Removendo a caixinha de "gameOver"
   reiniciar_jogo.innerHTML = "";
   //Retornando a animação do Mário e do obstáculo
   mario.classList.remove("gameOver");
   obstaculo.classList.remove("gameOver");
-  //Reiniciando a pontuação
-  pontuacao.innerHTML = "";
-  totalMoeadas = 0;
-  //Reiniciando a fase 
+  //Removendo a última fase que o jogador parou
   cenario.classList.remove("cenarioFase03");
+  obstaculo.classList.remove("obstaculoFase03");
+  //Retomando para a primeira fase 
   cenario.classList.add("cenarioFase01");
-
+  obstaculo.classList.add("obstaculoFase1");
+  // limparMoedas();
   game();
+
 }
 
 function GameOver() {
