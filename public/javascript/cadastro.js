@@ -4,8 +4,8 @@ const descricao = document.getElementById("descricao");
 let genero = document.getElementById("genero");
 let estilo = document.querySelector(".estilo");
 let lista_de_jogos = document.querySelector(".lista_de_jogos");
-let video = document.querySelector("#video");
-let input_com_video = document.getElementById("input_com_video");
+let imagem = document.querySelector("#imagem");
+let input_com_imagem = document.getElementById("input_com_imagem");
 const texto_pesquisa = document.querySelector("#texto_pesquisa");
 const limpar_filtro = document.querySelector("#limpar_filtro");
 
@@ -22,16 +22,16 @@ limpar_filtro.addEventListener("click", function () {
   texto_pesquisa.value = "";
 });
 
-function PegarURLVideo() {
-  if (input_com_video.files.length === 0) {
+function PegarURLImagem() {
+  if (input_com_imagem.files.length === 0) {
     return "";
   }
-  return URL.createObjectURL(input_com_video.files[0]);
+  return URL.createObjectURL(input_com_imagem.files[0]);
 }
 
 function CadastrarJogo() {
-  const urlVideo = PegarURLVideo();
-  const novoJogo = Jogo(nome.value, link.value, urlVideo, descricao.value, estilo.value);
+  const urlImagem = PegarURLImagem();
+  const novoJogo = Jogo(nome.value, link.value, urlImagem, descricao.value, estilo.value);
 
   if (VerificarCampos(novoJogo)) {
     jogos.push(novoJogo);
@@ -60,7 +60,7 @@ function ListaSemFiltro() {
     const div = document.createElement("div");
     div.classList.add("card_jogo");
     div.innerHTML = `
-        <video src="${jogos[i].video}" controls autoplay></video>
+        <img src="${jogos[i].video}" alt="Imagem do jogo" />
         <h2>${jogos[i].nome}</h2>
         <div>
         <p>${jogos[i].estilo}</p>
@@ -80,7 +80,7 @@ function ListaComFiltro() {
       const div = document.createElement("div");
       div.classList.add("card_jogo");
       div.innerHTML = `
-        <video src="${jogos[i].video}" controls autoplay></video>
+        <img src="${jogos[i].video}" alt="Imagem do jogo" />
         <h2>${jogos[i].nome}</h2>
         <div>
         <p>${jogos[i].estilo}</p>
@@ -103,10 +103,10 @@ function PreencherEstilos() {
   }
 }
 
-const Jogo = (nome, link, video, descricao, estilo) => ({
+const Jogo = (nome, link, imagem, descricao, estilo) => ({
   nome,
   link,
-  video,
+  imagem,
   descricao,
   estilo,
 });
