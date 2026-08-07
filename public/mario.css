@@ -1,0 +1,107 @@
+.jogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.cenario {
+  width: 1080px;
+  height: 380px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid black;
+}
+
+@keyframes moverCenario {
+  100% {
+    background-position: -2000px;
+  }
+}
+
+.mario {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  bottom: 0px;
+  left: 500px;
+  z-index: 1;
+}
+
+@keyframes jump {
+  0% {
+    bottom: 0px;
+  }
+
+  100% {
+    bottom: 0px;
+  }
+}
+
+.obstaculo {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  animation: movimentacao 2s linear infinite;
+  bottom: 0px;
+  z-index: 0;
+}
+
+@keyframes movimentacao {
+  0% {
+    left: 1100px;
+  }
+
+  50% {
+    left: 500px;
+  }
+
+  80% {
+    left: 50px;
+  }
+
+  100% {
+    left: -100px;
+  }
+}
+
+.gameOver {
+  animation: none;
+}
+
+.reiniciar_jogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.reiniciar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 5px dashed #2f5a59;
+  border-radius: 20px;
+  margin: 10px;
+  color: white;
+  height: 200px;
+  width: 400px;
+  background-color: #7cc6fe;
+}
+
+.reiniciar button {
+  background-color: #218b8f;
+  height: 40px;
+  width: 150px;
+  border: 2px solid white;
+  border-radius: 20px;
+  color: white;
+}
+
+.reiniciar button:hover {
+  background-color: #d3f2f3;
+  color: black;
+}
+
